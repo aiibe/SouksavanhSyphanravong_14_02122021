@@ -1,15 +1,4 @@
-import { useMemo, useState } from "react";
-import Select, { Options } from "react-select";
-import { states } from "../constants";
-import { OptionType } from "../types/states";
-import { stateToOption } from "../utils";
-
 function Home() {
-  const memStates = useMemo(() => stateToOption(states), [states]);
-  const [selectedOption, setSelectedOption] = useState<OptionType | null>(
-    memStates[0]
-  );
-
   return (
     <>
       <div className="title">
@@ -41,11 +30,7 @@ function Home() {
             <input type="text" />
 
             <label>State</label>
-            <Select
-              value={selectedOption}
-              options={memStates}
-              onChange={(opt) => setSelectedOption(opt)}
-            />
+            <select name="state"></select>
 
             <label>Zip Code</label>
             <input type="number" />
