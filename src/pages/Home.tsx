@@ -1,14 +1,16 @@
 import { useMemo, useState } from "react";
 import Select from "react-select";
-import { states } from "../constants";
+import { departmentOptions, states } from "../constants";
 import { OptionType } from "../types/states";
 import { stateToOption } from "../utils";
 
 function Home() {
   const memStates = useMemo(() => stateToOption(states), [states]);
-  const [selectedOption, setSelectedOption] = useState<OptionType | null>(
+  const [selectedState, setSelectedState] = useState<OptionType | null>(
     memStates[0]
   );
+  const [selectedDepartment, setSelectedDepartment] =
+    useState<OptionType | null>(departmentOptions[0]);
 
   return (
     <>
@@ -42,9 +44,9 @@ function Home() {
 
             <label>State</label>
             <Select
-              value={selectedOption}
+              value={selectedState}
               options={memStates}
-              onChange={(opt) => setSelectedOption(opt)}
+              onChange={(opt) => setSelectedState(opt)}
             />
 
             <label>Zip Code</label>
@@ -52,13 +54,11 @@ function Home() {
           </fieldset>
 
           <label>Department</label>
-          <select name="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          <Select
+            value={selectedDepartment}
+            options={departmentOptions}
+            onChange={(opt) => setSelectedDepartment(opt)}
+          />
         </form>
         <button>Save</button>
       </div>
