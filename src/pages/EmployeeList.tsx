@@ -1,5 +1,5 @@
-import React from "react";
-
-export default function EmployeeList() {
+function EmployeeList() {
   return <div>lalala</div>;
 }
+
+export default EmployeeList;
