@@ -1,8 +1,8 @@
 export type FormInputs = {
   firstName: string;
   lastName: string;
-  birthDate: string;
-  startDate: string;
+  birthDate: Date;
+  startDate: Date;
   streetLocation: string;
   cityLocation: string;
   stateLocation: string;

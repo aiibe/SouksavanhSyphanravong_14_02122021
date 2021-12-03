@@ -1,5 +1,7 @@
 import { useMemo } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { departmentOptions, states } from "../constants";
 import { FormInputs } from "../types/form";
@@ -7,7 +9,7 @@ import { stateToOption } from "../utils";
 
 function Home() {
   const memStates = useMemo(() => stateToOption(states), [states]);
-  const { register, handleSubmit } = useForm<FormInputs>();
+  const { register, handleSubmit, control } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     console.log(data);
@@ -30,10 +32,22 @@ function Home() {
           <input type="text" {...register("lastName")} />
 
           <label>Date of Birth</label>
-          <input type="text" {...register("birthDate")} />
+          <Controller
+            control={control}
+            name="birthDate"
+            render={({ field: { onChange, value } }) => (
+              <DatePicker selected={value} onChange={onChange} />
+            )}
+          />
 
           <label>Start Date</label>
-          <input type="text" {...register("startDate")} />
+          <Controller
+            control={control}
+            name="startDate"
+            render={({ field: { onChange, value } }) => (
+              <DatePicker selected={value} onChange={onChange} />
+            )}
+          />
 
           <fieldset className="address">
             <legend>Address</legend>
