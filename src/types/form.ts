@@ -1,3 +1,7 @@
+export type EmployeeFormPropsType = {
+  onSuccess: () => void;
+};
+
 export type FormInputs = {
   firstName: string;
   lastName: string;

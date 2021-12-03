@@ -17,6 +17,16 @@ label {
   margin-bottom: 10px;
 }
 
+select {
+  width: 100%;
+}
+
+.submit {
+  display: flex;
+  margin-top: 1rem !important;
+  margin: 0 auto;
+}
+
 .address {
   margin-top: 10px;
 }
