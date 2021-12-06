@@ -8,10 +8,12 @@ function Modal({ children, isOpen, close }: ModalPropType) {
     if (isOpen) {
       document.body.style.height = "100vh";
       document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = "15px";
     }
     return () => {
       document.body.style.height = "auto";
       document.body.style.overflow = "auto";
+      document.body.style.paddingRight = "0px";
     };
   }, [isOpen]);
 
