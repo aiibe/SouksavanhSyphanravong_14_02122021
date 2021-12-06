@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import EmployeeForm from "../components/EmployeeForm";
+import Modal from "../components/Modal";
 
 function Home() {
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [modalState, setModalState] = useState(true);
   return (
     <>
       <div className="title">
@@ -13,14 +14,14 @@ function Home() {
       <div className="container">
         <Link to="employee-list">View Current Employees</Link>
         <h2>Create Employee</h2>
-        <EmployeeForm onSuccess={() => setSubmitSuccess(true)} />
+        <EmployeeForm onSuccess={() => setModalState(true)} />
       </div>
 
-      {submitSuccess && (
+      <Modal isOpen={modalState} close={() => setModalState(false)}>
         <div id="confirmation" className="modal">
           Employee Created!
         </div>
-      )}
+      </Modal>
     </>
   );
 }
