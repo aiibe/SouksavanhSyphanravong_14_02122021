@@ -17,38 +17,38 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label>First Name</label>
-      <input type="text" {...register("firstName")} />
+      <label htmlFor="firstname">First Name</label>
+      <input id="firstname" type="text" {...register("firstName")} />
 
-      <label>Last Name</label>
-      <input type="text" {...register("lastName")} />
+      <label htmlFor="lastname">Last Name</label>
+      <input id="lastname" type="text" {...register("lastName")} />
 
-      <label>Date of Birth</label>
+      <label htmlFor="birthdate">Date of Birth</label>
       <Controller
         control={control}
         name="birthDate"
         render={({ field: { onChange, value } }) => (
-          <DatePicker selected={value} onChange={onChange} />
+          <DatePicker id="birthdate" selected={value} onChange={onChange} />
         )}
       />
 
-      <label>Start Date</label>
+      <label htmlFor="startdate">Start Date</label>
       <Controller
         control={control}
         name="startDate"
         render={({ field: { onChange, value } }) => (
-          <DatePicker selected={value} onChange={onChange} />
+          <DatePicker id="startdate" selected={value} onChange={onChange} />
         )}
       />
 
       <fieldset className="address">
         <legend>Address</legend>
 
-        <label>Street</label>
-        <input type="text" {...register("streetLocation")} />
+        <label htmlFor="street">Street</label>
+        <input id="street" type="text" {...register("streetLocation")} />
 
-        <label>City</label>
-        <input type="text" {...register("cityLocation")} />
+        <label htmlFor="city">City</label>
+        <input id="city" type="text" {...register("cityLocation")} />
 
         <label>State</label>
         <select {...register("stateLocation")}>
@@ -59,8 +59,8 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
           ))}
         </select>
 
-        <label>Zip Code</label>
-        <input type="number" {...register("zipCode")} />
+        <label htmlFor="zipcode">Zip Code</label>
+        <input id="zipcode" type="number" {...register("zipCode")} />
       </fieldset>
 
       <label>Department</label>
