@@ -43,3 +43,9 @@
 .react-datatable__search-box label {
   margin: 0;
 }
+
+/* Foot */
+.react-datatable__foot {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,5 +1,7 @@
 export type PropType = {
   showingLength: number[];
+  columns: ColumnType[];
+  rows: DataType[];
 };
 
 export type DataType = {
@@ -14,4 +16,18 @@ export type RowPropType = {
 export type ColumnType = {
   label: string;
   field: string;
+};
+
+export type TableBodyPropType = {
+  data: DataType[];
+  showLength: number;
+};
+
+export type TableHeadPropType = {
+  columns: ColumnType[];
+};
+
+export type ShowInfoPropType = {
+  showing: number;
+  total: number;
 };
