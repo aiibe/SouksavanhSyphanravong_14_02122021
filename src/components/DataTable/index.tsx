@@ -3,23 +3,24 @@ import zData from "../../mock/hr-net.json";
 import SearchBox from "./components/SearchBox";
 import Showing from "./components/Showing";
 import TableRow from "./components/TableRow";
+import { matchColumnOrder } from "./helper";
 import "./index.css";
-import { DataType, PropType } from "./types/DataTable";
+import { ColumnType, DataType, PropType } from "./types/DataTable";
 
 const columns = [
-  "First Name",
-  "Last Name",
-  "Start Date",
-  "Department",
-  "Date of Birth",
-  "Street",
-  "City",
-  "State",
-  "Zip Code",
+  { label: "First Name", field: "firstName" },
+  { label: "Last Name", field: "lastName" },
+  { label: "Start Date", field: "startDate" },
+  { label: "Department", field: "department" },
+  { label: "Date of Birth", field: "birthDate" },
+  { label: "Street", field: "streetLocation" },
+  { label: "City", field: "cityLocation" },
+  { label: "State", field: "stateLocation" },
+  { label: "Zip Code", field: "zipCode" },
 ];
 
 // const data: any = [];
-const data: any = zData;
+const data: DataType[] = matchColumnOrder(zData, columns);
 
 function DataTable({ showingLength }: PropType) {
   const [showing, setShowing] = useState(showingLength[0]);
@@ -38,27 +39,29 @@ function DataTable({ showingLength }: PropType) {
         />
         <SearchBox />
       </div>
+
       <table className="react-datatable__table" role="grid">
         <thead>
           <tr role="row">
-            {columns.map((propName: string) => (
+            {columns.map(({ label, field }: ColumnType) => (
               <th
-                key={propName}
+                key={field}
                 tabIndex={0}
                 rowSpan={1}
                 colSpan={1}
                 aria-sort="ascending"
                 aria-label={`{title}: activate to sort column descending`}
               >
-                {propName}
+                {label}
               </th>
             ))}
           </tr>
         </thead>
+
         <tbody>
           {data ? (
-            data.map((item: DataType, index: string) => (
-              <TableRow data={item} index={index} />
+            data.map((item, index) => (
+              <TableRow key={index} data={item} index={index} />
             ))
           ) : (
             <tr className="odd">
@@ -69,6 +72,7 @@ function DataTable({ showingLength }: PropType) {
           )}
         </tbody>
       </table>
+
       <div
         className="dataTables_info"
         id="employee-table_info"

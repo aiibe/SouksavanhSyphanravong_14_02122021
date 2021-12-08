@@ -12,7 +12,7 @@ function TableRow({ data, index }: RowPropType) {
       }
     >
       {Object.values(data).map((value: any) => (
-        <td>{value}</td>
+        <td key={value}>{value}</td>
       ))}
     </tr>
   );

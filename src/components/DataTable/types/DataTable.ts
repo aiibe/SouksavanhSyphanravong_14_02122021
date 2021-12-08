@@ -7,6 +7,11 @@ export type DataType = {
 };
 
 export type RowPropType = {
-  index: string;
+  index: number;
   data: DataType;
+};
+
+export type ColumnType = {
+  label: string;
+  field: string;
 };
