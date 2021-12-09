@@ -1,6 +1,6 @@
 import { DataType } from "./DataTable";
 
 export type PropType = {
-  index: number;
+  isEven: boolean;
   data: DataType;
 };

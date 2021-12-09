@@ -1,13 +1,12 @@
-import { isEvenNumber } from "../helper";
 import { PropType } from "../types/TableRow";
 
-function TableRow({ data, index }: PropType) {
+function TableRow({ data, isEven }: PropType) {
   return (
     <tr
       role="row"
       className={
-        isEvenNumber(Number(index))
-          ? "react-datatable__table-row--odd"
+        isEven
+          ? "react-datatable__table-row--even"
           : "react-datatable__table-row"
       }
     >

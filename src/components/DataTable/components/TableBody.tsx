@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { isEvenNumber } from "../helper";
 import { PropType } from "../types/TableBody";
 import TableRow from "./TableRow";
 
@@ -15,7 +16,7 @@ function TableBody({ data, showLength }: PropType) {
         </tr>
       ) : (
         items.map((item, index) => (
-          <TableRow key={index} data={item} index={index} />
+          <TableRow key={index} data={item} isEven={isEvenNumber(index)} />
         ))
       )}
     </tbody>

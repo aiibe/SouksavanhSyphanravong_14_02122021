@@ -8,11 +8,11 @@
   border-bottom: 1px solid #111;
 }
 
-.react-datatable__table-row--odd {
+.react-datatable__table-row--even {
   background-color: #f9f9f9;
 }
 
-.react-datatable__table-row--odd td,
+.react-datatable__table-row--even td,
 .react-datatable__table-row td {
   padding: 8px 10px;
 }
