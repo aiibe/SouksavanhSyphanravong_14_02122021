@@ -1,9 +1,10 @@
 import { PropType } from "../types/ShowInfo";
 
-function ShowInfo({ total, showing }: PropType) {
+function ShowInfo({ totalCount, showingCount, filterCount }: PropType) {
   return (
     <div role="status" aria-live="polite">
-      Showing {showing > 0 ? 1 : 0} to {showing} of {total} entries
+      Showing {showingCount > 0 ? 1 : 0} to {showingCount} of {filterCount}{" "}
+      entries {filterCount > 0 && `(filtered from ${totalCount} total entries)`}
     </div>
   );
 }
