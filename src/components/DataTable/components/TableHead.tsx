@@ -1,6 +1,7 @@
-import { ColumnType, TableHeadPropType } from "../types/DataTable";
+import { ColumnType } from "../types/DataTable";
+import { PropType } from "../types/TableHead";
 
-function TableHead({ columns }: TableHeadPropType) {
+function TableHead({ columns }: PropType) {
   return (
     <thead>
       <tr role="row">

@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { TableBodyPropType } from "../types/DataTable";
+import { PropType } from "../types/TableBody";
 import TableRow from "./TableRow";
 
-function TableBody({ data, showLength }: TableBodyPropType) {
+function TableBody({ data, showLength }: PropType) {
   const items = useMemo(() => data.slice(0, showLength), [showLength]);
 
   return (

@@ -1,7 +1,7 @@
 import { isEvenNumber } from "../helper";
-import { RowPropType } from "../types/DataTable";
+import { PropType } from "../types/TableRow";
 
-function TableRow({ data, index }: RowPropType) {
+function TableRow({ data, index }: PropType) {
   return (
     <tr
       role="row"

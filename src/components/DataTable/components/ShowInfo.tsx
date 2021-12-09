@@ -1,6 +1,6 @@
-import { ShowInfoPropType } from "../types/DataTable";
+import { PropType } from "../types/ShowInfo";
 
-function ShowInfo({ total, showing }: ShowInfoPropType) {
+function ShowInfo({ total, showing }: PropType) {
   return (
     <div role="status" aria-live="polite">
       Showing {showing > 0 ? 1 : 0} to {showing} of {total} entries
