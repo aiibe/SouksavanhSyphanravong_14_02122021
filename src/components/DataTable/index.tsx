@@ -42,7 +42,7 @@ function DataTable({ showingLength, columns, rows }: PropType) {
 
       <div className="react-datatable__foot">
         <ShowInfo
-          showingCount={search.length ? data.length : showing}
+          showingCount={showing}
           totalCount={memData.length}
           filterCount={search.length ? data.length : 0}
         />
