@@ -1,10 +1,9 @@
-import { useMemo } from "react";
 import { isEvenNumber } from "../helper";
 import { PropType } from "../types/TableBody";
 import TableRow from "./TableRow";
 
 function TableBody({ data, showLength }: PropType) {
-  const items = useMemo(() => data.slice(0, showLength), [showLength]);
+  const items = data.slice(0, showLength);
 
   return (
     <tbody>

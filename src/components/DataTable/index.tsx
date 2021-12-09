@@ -4,13 +4,22 @@ import ShowInfo from "./components/ShowInfo";
 import Showing from "./components/Showing";
 import TableBody from "./components/TableBody";
 import TableHead from "./components/TableHead";
-import { matchColumnOrder } from "./helper";
+import { matchColumnOrder, objectToString, searchList } from "./helper";
 import "./index.css";
 import { PropType } from "./types/DataTable";
 
 function DataTable({ showingLength, columns, rows }: PropType) {
   const [showing, setShowing] = useState(showingLength[0]);
-  const data = useMemo(() => matchColumnOrder(rows, columns), [rows, columns]);
+  const [search, setSearch] = useState("");
+  const memData = useMemo(
+    () => matchColumnOrder(rows, columns),
+    [rows, columns]
+  );
+  const indexedData = useMemo(() => objectToString(memData), [memData]);
+
+  const data = search.length
+    ? searchList(search, indexedData, memData)
+    : memData;
 
   return (
     <div className="react-datatable__wrap">
@@ -20,7 +29,10 @@ function DataTable({ showingLength, columns, rows }: PropType) {
           options={showingLength}
           onSelect={(number: number) => setShowing(number)}
         />
-        <SearchBox />
+        <SearchBox
+          inputChange={(value: string) => setSearch(value)}
+          inputValue={search}
+        />
       </div>
 
       <table className="react-datatable__table" role="grid">
@@ -29,7 +41,10 @@ function DataTable({ showingLength, columns, rows }: PropType) {
       </table>
 
       <div className="react-datatable__foot">
-        <ShowInfo showing={showing} total={data.length} />
+        <ShowInfo
+          showing={search.length ? data.length : showing}
+          total={data.length}
+        />
         <div
           className="dataTables_paginate paging_simple_numbers"
           id="employee-table_paginate"
