@@ -1,4 +1,5 @@
 export type PropType = {
-  showing: number;
-  total: number;
+  showingCount: number;
+  totalCount: number;
+  filterCount: number;
 };
