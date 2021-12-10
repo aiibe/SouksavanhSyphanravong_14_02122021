@@ -15,8 +15,6 @@ function Paginate({ data, limit, current, setPage }: PropType) {
     if (current < pageCount) return setPage(current + 1);
   };
 
-  console.log(pageNumbers);
-
   return (
     <div>
       <button

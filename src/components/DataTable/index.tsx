@@ -13,20 +13,30 @@ function DataTable({ showingLength, columns, rows }: PropType) {
   const [showing, setShowing] = useState(showingLength[0]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Memoize data matched to columns
   const memData = useMemo(
     () => matchColumnOrder(rows, columns),
     [rows, columns]
   );
+
+  // Index data for full-text search
   const indexedData = useMemo(() => objectToString(memData), [memData]);
 
-  const data = search.length
-    ? searchList(search, indexedData, memData)
-    : memData;
-
+  // Update search value and reset current page to 1
   const handleSearchChange = (value: string) => {
     setSearch(value);
-    setCurrentPage(1); // Reset to page 1 when search
+    setCurrentPage(1);
   };
+
+  // Update showing items per page and reset to page 1
+  const handleSetShowing = (number: number) => {
+    setShowing(number);
+    setCurrentPage(1);
+  };
+
+  // Filter data on search
+  let data = search.length ? searchList(search, indexedData, memData) : memData;
 
   return (
     <div className="react-datatable__wrap">
@@ -34,7 +44,7 @@ function DataTable({ showingLength, columns, rows }: PropType) {
         <Showing
           value={showing}
           options={showingLength}
-          onSelect={(number: number) => setShowing(number)}
+          onSelect={handleSetShowing}
         />
         <SearchBox inputChange={handleSearchChange} inputValue={search} />
       </div>
