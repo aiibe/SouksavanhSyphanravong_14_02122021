@@ -18,7 +18,7 @@ function EmployeeList() {
   return (
     <div id="employee-div" className="container">
       <h1>Current Employees</h1>
-      <DataTable columns={columns} rows={data.slice(0, 100)} />
+      <DataTable columns={columns} rows={data} />
       <Link to="/">Home</Link>
     </div>
   );

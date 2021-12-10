@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { generatePageNumbers } from "../helper";
 import { PropType } from "../types/Paginate";
 
