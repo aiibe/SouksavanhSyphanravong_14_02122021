@@ -1,6 +1,7 @@
 .react-datatable__table {
   border-bottom: 1px solid #111;
   border-spacing: 0;
+  margin-bottom: 5px;
 }
 
 .react-datatable__table thead tr th {
@@ -42,6 +43,22 @@
 /* SearchBox */
 .react-datatable__search-box label {
   margin: 0;
+}
+
+/* Paginate */
+.react-datatable__paginate__button {
+  margin-left: 5px;
+  padding: 4px 10px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+.react-datatable__paginate__button--active,
+.react-datatable__paginate__button:hover {
+  cursor: pointer;
+  border: 1px solid #979797;
+  background: linear-gradient(to bottom, white 0%, #dcdcdc 100%);
 }
 
 /* Foot */

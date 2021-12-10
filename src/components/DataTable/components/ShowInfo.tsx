@@ -1,21 +1,31 @@
 import { PropType } from "../types/ShowInfo";
 
-function ShowInfo({ totalCount, showingCount, filterCount }: PropType) {
+function ShowInfo({
+  totalCount,
+  showingCount,
+  filterCount,
+  currentPage,
+  filtering,
+}: PropType) {
+  const base = filtering ? filterCount : totalCount;
+  const start = base === 0 ? base : showingCount * (currentPage - 1) + 1;
+  const end = showingCount * currentPage;
+  const endLimit = base < end ? base : end;
+
   return (
     <div role="status" aria-live="polite">
-      Showing {showingCount > 0 ? 1 : 0} to{" "}
-      {filterCount < showingCount && filterCount !== 0
-        ? filterCount
-        : showingCount}{" "}
-      of {filterCount <= 0 ? totalCount : filterCount} entries{" "}
-      {filterCount > 0 && `(filtered from ${totalCount} total entries)`}
+      Showing {start} to {endLimit} of {base} entries{" "}
+      {filtering && `(filtered from ${totalCount} total entries)`}
     </div>
   );
 }
 
 ShowInfo.defaultProps = {
-  total: 0,
-  showing: 0,
+  totalCount: 0,
+  showingCount: 0,
+  currentPage: 1,
+  filterCount: 0,
+  filtering: false,
 };
 
 export default ShowInfo;

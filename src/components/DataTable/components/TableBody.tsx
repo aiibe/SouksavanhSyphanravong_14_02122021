@@ -2,8 +2,10 @@ import { isEvenNumber } from "../helper";
 import { PropType } from "../types/TableBody";
 import TableRow from "./TableRow";
 
-function TableBody({ data, showLength }: PropType) {
-  const items = data.slice(0, showLength);
+function TableBody({ data, showLength, page }: PropType) {
+  const indexStart = showLength * (page - 1);
+  const indexEnd = showLength * page;
+  const items = data.slice(indexStart, indexEnd);
 
   return (
     <tbody>

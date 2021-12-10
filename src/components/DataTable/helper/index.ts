@@ -58,3 +58,46 @@ export function searchList(
   });
   return found;
 }
+
+/**
+ * Function to create array of page numbers for pagination
+ * @param currentPage Number of current page
+ * @param pageCount Total nomber of pages
+ * @returns Array of numbers
+ */
+export function generatePageNumbers(
+  currentPage: number,
+  pageCount: number
+): number[] {
+  const MAX_SHOW = 7;
+  const show = pageCount < MAX_SHOW ? pageCount : MAX_SHOW;
+  const list = [...Array(show)];
+
+  return list.map((_, i) => {
+    const pageNum = i + 1;
+
+    if (pageCount <= MAX_SHOW) return pageNum;
+
+    if (pageNum === 1) return pageNum;
+
+    if (currentPage < 5 && pageNum === 6) return 0;
+    if (pageNum === show) return pageCount;
+
+    if (currentPage >= 5 && currentPage < pageCount - 3) {
+      if (pageNum === 2 || pageNum === 6) return 0;
+      if (pageNum === 3) return currentPage - 1;
+      if (pageNum === 4) return currentPage;
+      if (pageNum === 5) return currentPage + 1;
+    }
+
+    if (currentPage >= pageCount - 3) {
+      if (pageNum === 2) return 0;
+      if (pageNum === 3) return pageCount - 4;
+      if (pageNum === 4) return pageCount - 3;
+      if (pageNum === 5) return pageCount - 2;
+      if (pageNum === 6) return pageCount - 1;
+    }
+
+    return pageNum;
+  });
+}

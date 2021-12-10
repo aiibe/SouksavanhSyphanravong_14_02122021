@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import Paginate from "./components/Paginate";
 import SearchBox from "./components/SearchBox";
 import ShowInfo from "./components/ShowInfo";
 import Showing from "./components/Showing";
@@ -11,6 +12,7 @@ import { PropType } from "./types/DataTable";
 function DataTable({ showingLength, columns, rows }: PropType) {
   const [showing, setShowing] = useState(showingLength[0]);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const memData = useMemo(
     () => matchColumnOrder(rows, columns),
     [rows, columns]
@@ -21,6 +23,11 @@ function DataTable({ showingLength, columns, rows }: PropType) {
     ? searchList(search, indexedData, memData)
     : memData;
 
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setCurrentPage(1); // Reset to page 1 when search
+  };
+
   return (
     <div className="react-datatable__wrap">
       <div className="react-datatable__sort-filter">
@@ -29,31 +36,28 @@ function DataTable({ showingLength, columns, rows }: PropType) {
           options={showingLength}
           onSelect={(number: number) => setShowing(number)}
         />
-        <SearchBox
-          inputChange={(value: string) => setSearch(value)}
-          inputValue={search}
-        />
+        <SearchBox inputChange={handleSearchChange} inputValue={search} />
       </div>
 
       <table className="react-datatable__table" role="grid">
         <TableHead columns={columns} />
-        <TableBody data={data} showLength={showing} />
+        <TableBody data={data} showLength={showing} page={currentPage} />
       </table>
 
       <div className="react-datatable__foot">
         <ShowInfo
           showingCount={showing}
           totalCount={memData.length}
+          filtering={search.length ? true : false}
           filterCount={search.length ? data.length : 0}
+          currentPage={currentPage}
         />
-        <div
-          className="dataTables_paginate paging_simple_numbers"
-          id="employee-table_paginate"
-        >
-          <a aria-controls="employee-table">Previous</a>
-          <span></span>
-          <a>Next</a>
-        </div>
+        <Paginate
+          data={data}
+          limit={showing}
+          setPage={(value) => setCurrentPage(value)}
+          current={currentPage}
+        />
       </div>
     </div>
   );
