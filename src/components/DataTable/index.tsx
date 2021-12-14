@@ -72,7 +72,11 @@ function DataTable({ showingLength, columns, rows }: PropType) {
       </div>
 
       <table className="react-datatable__table" role="grid">
-        <TableHead columns={columns} fieldSort={handleFieldSort} />
+        <TableHead
+          columns={columns}
+          fieldSort={handleFieldSort}
+          sortBy={sortByFieldAsc}
+        />
         <TableBody data={sortData} showLength={showing} page={currentPage} />
       </table>
 
