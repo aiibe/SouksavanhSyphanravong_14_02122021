@@ -48,15 +48,16 @@ function DataTable({ showingLength, columns, rows }: PropType) {
   };
 
   // Filter data on search
-  let data = search.length ? searchList(search, indexedData, memData) : memData;
+  const data = search.length
+    ? searchList(search, indexedData, memData)
+    : memData;
 
   // Sort by field name
   const [field, ascending] = sortByFieldAsc;
-  data.sort((a: any, b: any) => {
-    if (typeof a[field] === "string")
-      return ascending
-        ? a[field].localeCompare(b[field])
-        : b[field].localeCompare(a[field]);
+  const sortData = [...data].sort((a: any, b: any) => {
+    return ascending
+      ? a[field].localeCompare(b[field])
+      : b[field].localeCompare(a[field]);
   });
 
   return (
@@ -72,7 +73,7 @@ function DataTable({ showingLength, columns, rows }: PropType) {
 
       <table className="react-datatable__table" role="grid">
         <TableHead columns={columns} fieldSort={handleFieldSort} />
-        <TableBody data={data} showLength={showing} page={currentPage} />
+        <TableBody data={sortData} showLength={showing} page={currentPage} />
       </table>
 
       <div className="react-datatable__foot">

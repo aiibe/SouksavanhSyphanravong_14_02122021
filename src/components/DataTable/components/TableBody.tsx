@@ -5,16 +5,18 @@ import TableRow from "./TableRow";
 function TableBody({ data, showLength, page }: PropType) {
   if (!data.length)
     return (
-      <tr className="react-datatable__table-row--odd">
-        <td valign="top" colSpan={9} style={{ textAlign: "center" }}>
-          No data available in table
-        </td>
-      </tr>
+      <tbody>
+        <tr className="react-datatable__table-row--odd">
+          <td valign="top" colSpan={9} style={{ textAlign: "center" }}>
+            No data available in table
+          </td>
+        </tr>
+      </tbody>
     );
 
   const indexStart = showLength * (page - 1);
   const indexEnd = showLength * page;
-  let items = data.slice(indexStart, indexEnd);
+  const items = data.slice(indexStart, indexEnd);
 
   return (
     <tbody>
