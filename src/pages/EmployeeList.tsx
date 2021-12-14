@@ -16,10 +16,12 @@ const columns = [
 
 function EmployeeList() {
   return (
-    <div className="container">
-      <h1>Current Employees</h1>
+    <div className="container employee-list">
+      <h1 className="employee-list__title">Current Employees</h1>
       <DataTable columns={columns} rows={data} />
-      <Link to="/">Home</Link>
+      <div className="employee-list__nav-link">
+        <Link to="/">Home</Link>
+      </div>
     </div>
   );
 }

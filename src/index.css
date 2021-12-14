@@ -32,3 +32,12 @@ select {
 .address {
   margin-top: 10px;
 }
+
+.employee-list__title {
+  text-align: center;
+}
+
+.employee-list__nav-link {
+  display: flex;
+  justify-content: center;
+}
