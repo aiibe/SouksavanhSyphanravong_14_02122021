@@ -1,7 +1,7 @@
 import { ColumnType } from "../types/DataTable";
 import { PropType } from "../types/TableHead";
 
-function TableHead({ columns }: PropType) {
+function TableHead({ columns, fieldSort }: PropType) {
   return (
     <thead>
       <tr role="row">
@@ -9,8 +9,7 @@ function TableHead({ columns }: PropType) {
           <th
             key={field}
             tabIndex={0}
-            rowSpan={1}
-            colSpan={1}
+            onClick={() => fieldSort(field)}
             aria-sort="ascending"
             aria-label={`{title}: activate to sort column descending`}
           >

@@ -13,6 +13,10 @@ function DataTable({ showingLength, columns, rows }: PropType) {
   const [showing, setShowing] = useState(showingLength[0]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortByFieldAsc, setSortByFieldAsc] = useState<[string, boolean]>([
+    columns[0].field,
+    true, // ascending and false is descending
+  ]);
 
   // Memoize data matched to columns
   const memData = useMemo(
@@ -35,8 +39,25 @@ function DataTable({ showingLength, columns, rows }: PropType) {
     setCurrentPage(1);
   };
 
+  // Update field to sort
+  const handleFieldSort = (field: string) => {
+    setSortByFieldAsc([
+      field,
+      field === sortByFieldAsc[0] ? !sortByFieldAsc[1] : true,
+    ]);
+  };
+
   // Filter data on search
   let data = search.length ? searchList(search, indexedData, memData) : memData;
+
+  // Sort by field name
+  const [field, ascending] = sortByFieldAsc;
+  data.sort((a: any, b: any) => {
+    if (typeof a[field] === "string")
+      return ascending
+        ? a[field].localeCompare(b[field])
+        : b[field].localeCompare(a[field]);
+  });
 
   return (
     <div className="react-datatable__wrap">
@@ -50,7 +71,7 @@ function DataTable({ showingLength, columns, rows }: PropType) {
       </div>
 
       <table className="react-datatable__table" role="grid">
-        <TableHead columns={columns} />
+        <TableHead columns={columns} fieldSort={handleFieldSort} />
         <TableBody data={data} showLength={showing} page={currentPage} />
       </table>
 
