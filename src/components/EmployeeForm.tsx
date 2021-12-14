@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { useMemo } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,7 +12,13 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
   const { register, handleSubmit, control } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data);
+    const { birthDate, startDate } = data;
+    const serializeData = {
+      ...data,
+      birthDate: format(birthDate, "MM/dd/yyyy"),
+      startDate: format(startDate, "MM/dd/yyyy"),
+    };
+    console.log(serializeData);
 
     // onSuccess()
   };
@@ -37,7 +44,12 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
         control={control}
         name="startDate"
         render={({ field: { onChange, value } }) => (
-          <DatePicker id="startdate" selected={value} onChange={onChange} />
+          <DatePicker
+            id="startdate"
+            selected={value}
+            onChange={onChange}
+            dateFormat="MM/dd/yyyy"
+          />
         )}
       />
 
