@@ -16,7 +16,7 @@ const columns = [
 
 function EmployeeList() {
   return (
-    <div id="employee-div" className="container">
+    <div className="container">
       <h1>Current Employees</h1>
       <DataTable columns={columns} rows={data} />
       <Link to="/">Home</Link>

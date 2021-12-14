@@ -1,12 +1,19 @@
+.react-datatable__table-wrap {
+  display: block;
+  overflow-x: auto;
+}
+
 .react-datatable__table {
   border-bottom: 1px solid #111;
   border-spacing: 0;
+  width: 100%;
   margin-bottom: 5px;
 }
 
 .react-datatable__table thead tr th {
   padding: 10px 18px;
   border-bottom: 1px solid #111;
+  white-space: nowrap;
 }
 
 .react-datatable__table-row--even {
