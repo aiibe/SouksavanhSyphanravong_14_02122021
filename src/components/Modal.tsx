@@ -11,9 +11,7 @@ function Modal({ children, isOpen, close }: ModalPropType) {
       document.body.style.paddingRight = "15px";
     }
     return () => {
-      document.body.style.height = "auto";
-      document.body.style.overflow = "auto";
-      document.body.style.paddingRight = "0px";
+      document.body.removeAttribute("style");
     };
   }, [isOpen]);
 
