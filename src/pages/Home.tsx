@@ -5,6 +5,7 @@ import Modal from "../components/Modal";
 
 function Home() {
   const [modalState, setModalState] = useState(false);
+
   return (
     <>
       <div className="title">

@@ -6,21 +6,27 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { departmentOptions, states } from "../constants";
 import { EmployeeFormPropsType, FormInputs } from "../types/form";
 import { stateToOption } from "../utils";
+import { addItem } from "../utils/storage";
 
 function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
   const memStates = useMemo(() => stateToOption(states), [states]); // memoized
   const { register, handleSubmit, control } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    const { birthDate, startDate } = data;
+    const { birthDate, startDate, zipCode } = data;
+
+    // Save data in the right format
     const serializeData = {
       ...data,
       birthDate: format(birthDate, "MM/dd/yyyy"),
       startDate: format(startDate, "MM/dd/yyyy"),
+      zipCode: Number(zipCode),
     };
-    console.log(serializeData);
 
-    // onSuccess()
+    addItem("employees", serializeData);
+
+    // Success, open modal
+    onSuccess();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -88,9 +94,9 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
 
       <label>Department</label>
       <select {...register("department")}>
-        {departmentOptions.map(({ value, label }) => (
-          <option key={value} value={value}>
-            {label}
+        {departmentOptions.map((option) => (
+          <option key={option} value={option}>
+            {option}
           </option>
         ))}
       </select>

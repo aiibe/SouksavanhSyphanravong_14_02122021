@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "../components/DataTable";
-import data from "../mock/hr-net.json";
+import { getItems, setItems } from "../utils/storage";
+// import zdata from "../mock/hr-net.json";
 
 const columns = [
   { label: "First Name", field: "firstName" },
@@ -15,6 +17,17 @@ const columns = [
 ];
 
 function EmployeeList() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Get data from localStorage
+    const employees = getItems("employees");
+    setData(employees ? employees : setItems("employees", []));
+
+    // // Mock data 150 fake employees (comment out)
+    // setData(zdata)
+  }, []);
+
   return (
     <div className="container employee-list">
       <h1 className="employee-list__title">Current Employees</h1>
