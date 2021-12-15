@@ -11,7 +11,7 @@ function Home() {
         <h1>HRnet</h1>
       </div>
 
-      <div className="container">
+      <div className="container employee-form">
         <Link to="employee-list">View Current Employees</Link>
         <h2>Create Employee</h2>
         <EmployeeForm onSuccess={() => setModalState(true)} />

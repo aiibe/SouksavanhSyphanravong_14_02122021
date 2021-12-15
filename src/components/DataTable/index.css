@@ -28,8 +28,8 @@
 /* Header container */
 .react-datatable__sort-filter {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 10px;
 }
 
@@ -68,6 +68,7 @@
 .react-datatable__showing {
   display: flex;
   align-items: flex-end;
+  margin-bottom: 10px;
 }
 
 .react-datatable__showing label {
@@ -102,5 +103,26 @@
 /* Foot */
 .react-datatable__foot {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Desktop screen */
+
+@media (min-width: 640px) {
+  .react-datatable__sort-filter {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .react-datatable__showing {
+    margin-bottom: 0;
+  }
+
+  .react-datatable__foot {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

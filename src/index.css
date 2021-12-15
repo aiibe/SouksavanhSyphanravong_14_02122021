@@ -40,4 +40,13 @@ select {
 .employee-list__nav-link {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+}
+
+.employee-form {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
