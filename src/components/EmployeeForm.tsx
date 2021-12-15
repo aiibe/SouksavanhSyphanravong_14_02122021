@@ -35,7 +35,15 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
         control={control}
         name="birthDate"
         render={({ field: { onChange, value } }) => (
-          <DatePicker id="birthdate" selected={value} onChange={onChange} />
+          <DatePicker
+            id="birthdate"
+            selected={value}
+            onChange={onChange}
+            peekNextMonth
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+          />
         )}
       />
 
@@ -48,7 +56,10 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
             id="startdate"
             selected={value}
             onChange={onChange}
-            dateFormat="MM/dd/yyyy"
+            peekNextMonth
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
           />
         )}
       />
