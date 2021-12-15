@@ -25,7 +25,7 @@ function EmployeeList() {
     setData(employees ? employees : setItems("employees", []));
 
     // // Mock data 150 fake employees (comment out)
-    // setData(zdata)
+    // setData(zdata);
   }, []);
 
   return (

@@ -1,4 +1,3 @@
-import { FormEvent, useState } from "react";
 import { PropType } from "../types/SearchBox";
 
 function SearchBox({ inputChange, inputValue }: PropType) {

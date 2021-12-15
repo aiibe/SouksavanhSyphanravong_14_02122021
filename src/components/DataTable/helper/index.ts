@@ -39,24 +39,32 @@ export function objectToString(data: DataType[]): string[] {
 }
 
 /**
- * Function to filter data that contains the word given
- * @param word String search
+ * Function to filter data that contains the search words given
+ * @param words String search
  * @param indexedData Array of string (indexed data)
  * @param originalData Array of objects
  * @returns Object[] Array of a portion of data filtered
  */
 export function searchList(
-  word: string,
+  words: string,
   indexedData: string[],
   originalData: DataType[]
 ) {
-  const found: DataType[] = [];
-  indexedData.forEach((item, index) => {
-    if (item.indexOf(word) !== -1) {
+  // Split search text
+  const arrayWords = words.trim().toLowerCase().split(" ");
+
+  return indexedData.reduce((found: DataType[], item, index) => {
+    const matched = arrayWords.map((word) =>
+      item.indexOf(word) !== -1 ? 1 : 0
+    );
+
+    // Array contains 1 and only 1 is a match
+    // [1,0,1] is not a matched and skipped
+    if (matched.every((val) => val === 1)) {
       found.push(originalData[index]);
     }
-  });
-  return found;
+    return found;
+  }, []);
 }
 
 /**
