@@ -14,10 +14,23 @@ function TableHead({
           <th
             key={field}
             tabIndex={0}
+            onKeyPress={({ key }) => key === "Enter" && fieldSort(field)}
             onClick={() => fieldSort(field)}
-            aria-sort="ascending"
+            aria-sort={
+              field === currentField
+                ? ascending
+                  ? "ascending"
+                  : "descending"
+                : "ascending"
+            }
             className="react-datatable__head-field"
-            aria-label={`{title}: activate to sort column descending`}
+            aria-label={`${label}: activate to sort column ${
+              field === currentField
+                ? ascending
+                  ? "descending"
+                  : "ascending"
+                : "ascending"
+            }`}
           >
             <span>{label}</span>
             <Arrows active={currentField === field} ascending={ascending} />
