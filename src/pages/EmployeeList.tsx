@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { DataTable } from "react-basic-datatable";
 import { getItems, setItems } from "../utils/storage";
 import { columns } from "../constants/table";
-import zdata from "../mock/hr-net.json";
+// import zdata from "../mock/hr-net.json";
 
 function EmployeeList() {
   const [data, setData] = useState([]);
