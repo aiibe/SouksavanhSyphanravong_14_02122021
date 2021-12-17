@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DataTable from "../components/DataTable";
+import { DataTable } from "react-basic-datatable";
 import { getItems, setItems } from "../utils/storage";
-// import zdata from "../mock/hr-net.json";
-
-const columns = [
-  { label: "First Name", field: "firstName" },
-  { label: "Last Name", field: "lastName" },
-  { label: "Start Date", field: "startDate" },
-  { label: "Department", field: "department" },
-  { label: "Date of Birth", field: "birthDate" },
-  { label: "Street", field: "streetLocation" },
-  { label: "City", field: "cityLocation" },
-  { label: "State", field: "stateLocation" },
-  { label: "Zip Code", field: "zipCode" },
-];
+import { columns } from "../constants/table";
+import zdata from "../mock/hr-net.json";
 
 function EmployeeList() {
   const [data, setData] = useState([]);
