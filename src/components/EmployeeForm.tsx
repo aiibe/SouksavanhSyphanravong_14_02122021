@@ -3,14 +3,16 @@ import { useMemo } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { departmentOptions, states } from "../constants";
+import { addEmployee } from "../store/reducers/employees/actions";
 import { EmployeeFormPropsType, FormInputs } from "../types/form";
 import { stateToOption } from "../utils";
-import { addItem } from "../utils/storage";
 
 function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
   const memStates = useMemo(() => stateToOption(states), [states]); // memoized
   const { register, handleSubmit, control } = useForm<FormInputs>();
+  const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     const { birthDate, startDate, zipCode } = data;
@@ -23,7 +25,8 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
       zipCode: Number(zipCode),
     };
 
-    addItem("employees", serializeData);
+    // Add new employee data
+    dispatch(addEmployee(serializeData));
 
     // Success, open modal
     onSuccess();

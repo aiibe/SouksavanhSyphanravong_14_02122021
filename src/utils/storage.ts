@@ -21,14 +21,3 @@ export function setItems(key: string, value: any) {
   localStorage.setItem(key, val);
   return getItems(key);
 }
-
-/**
- * Add new value to data by key
- * @param key string key
- * @param value string or object item
- * @returns Updated array of items
- */
-export function addItem(key: string, value: any) {
-  const newData = JSON.stringify([...getItems(key), value]);
-  return setItems(key, newData);
-}
