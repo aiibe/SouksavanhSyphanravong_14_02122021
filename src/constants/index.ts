@@ -1,11 +1,11 @@
 import { OptionType, StateType } from "../types/states";
 
-export const departmentOptions: string[] = [
-  "Sales",
-  "Marketing",
-  "Engineering",
-  "Human Resources",
-  "Legal",
+export const departmentOptions: OptionType[] = [
+  { label: "Sales", value: "sales" },
+  { label: "Marketing", value: "marketing" },
+  { label: "Engineering", value: "engineering" },
+  { label: "Human Resources", value: "human-resources" },
+  { label: "Legal", value: "legal" },
 ];
 
 export const states: StateType[] = [

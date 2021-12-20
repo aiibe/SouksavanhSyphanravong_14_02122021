@@ -1,3 +1,5 @@
+import { OptionType } from "./states";
+
 export type EmployeeFormPropsType = {
   onSuccess: () => void;
 };
@@ -9,19 +11,7 @@ export type FormInputs = {
   startDate: Date;
   streetLocation: string;
   cityLocation: string;
-  stateLocation: string;
+  stateLocation: OptionType;
   zipCode: number;
-  department: string;
-};
-
-type SerializedInputs = {
-  firstName: string;
-  lastName: string;
-  birthDate: string;
-  startDate: string;
-  streetLocation: string;
-  cityLocation: string;
-  stateLocation: string;
-  zipCode: number;
-  department: string;
+  department: OptionType;
 };

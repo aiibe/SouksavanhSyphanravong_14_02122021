@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import Select from "react-select";
 import { departmentOptions, states } from "../constants";
 import { addEmployee } from "../store/reducers/employees/actions";
 import { EmployeeFormPropsType, FormInputs } from "../types/form";
@@ -15,7 +16,7 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
   const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    const { birthDate, startDate, zipCode } = data;
+    const { birthDate, startDate, zipCode, stateLocation, department } = data;
 
     // Save data in the right format
     const serializeData = {
@@ -23,6 +24,8 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
       birthDate: format(birthDate, "MM/dd/yyyy"),
       startDate: format(startDate, "MM/dd/yyyy"),
       zipCode: Number(zipCode),
+      stateLocation: stateLocation.value,
+      department: department.label,
     };
 
     // Add new employee data
@@ -86,26 +89,40 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
         <input id="city" type="text" {...register("cityLocation")} />
 
         <label>State</label>
-        <select {...register("stateLocation")}>
-          {memStates.map(({ value, label }) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
+        <Controller
+          control={control}
+          name="stateLocation"
+          defaultValue={memStates[0]}
+          render={({ field }) => (
+            <Select
+              {...field}
+              defaultValue={memStates[0]}
+              isClearable={false}
+              isSearchable={false}
+              options={memStates}
+            />
+          )}
+        />
 
         <label htmlFor="zipcode">Zip Code</label>
         <input id="zipcode" type="number" {...register("zipCode")} />
       </fieldset>
 
       <label>Department</label>
-      <select {...register("department")}>
-        {departmentOptions.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      <Controller
+        control={control}
+        name="department"
+        defaultValue={departmentOptions[0]}
+        render={({ field }) => (
+          <Select
+            {...field}
+            defaultValue={departmentOptions[0]}
+            isClearable={false}
+            isSearchable={false}
+            options={departmentOptions}
+          />
+        )}
+      />
 
       <button className="submit" type="submit">
         Save
