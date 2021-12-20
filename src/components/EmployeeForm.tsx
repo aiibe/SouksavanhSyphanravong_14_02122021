@@ -11,7 +11,7 @@ import { stateToOption } from "../utils";
 
 function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
   const memStates = useMemo(() => stateToOption(states), [states]); // memoized
-  const { register, handleSubmit, control } = useForm<FormInputs>();
+  const { register, handleSubmit, control, reset } = useForm<FormInputs>();
   const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
@@ -30,6 +30,9 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
 
     // Success, open modal
     onSuccess();
+
+    // Reset form
+    reset();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
