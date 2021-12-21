@@ -1,6 +1,6 @@
 import { OptionType } from "./states";
 
-export type EmployeeFormPropsType = {
+export type PropType = {
   onSuccess: () => void;
 };
 

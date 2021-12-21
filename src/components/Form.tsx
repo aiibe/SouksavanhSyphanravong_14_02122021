@@ -7,10 +7,10 @@ import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { departmentOptions, states } from "../constants";
 import { addEmployee } from "../store/reducers/employees/actions";
-import { EmployeeFormPropsType, FormInputs } from "../types/form";
+import { FormInputs, PropType } from "../types/form";
 import { stateToOption } from "../utils";
 
-function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
+function Form({ onSuccess }: PropType) {
   const memStates = useMemo(() => stateToOption(states), [states]); // memoized
   const { register, handleSubmit, control, reset } = useForm<FormInputs>();
   const dispatch = useDispatch();
@@ -131,4 +131,4 @@ function EmployeeForm({ onSuccess }: EmployeeFormPropsType) {
   );
 }
 
-export default EmployeeForm;
+export default Form;

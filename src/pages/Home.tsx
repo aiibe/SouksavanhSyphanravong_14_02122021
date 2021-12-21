@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import EmployeeForm from "../components/EmployeeForm";
+import Form from "../components/Form";
 import Modal from "../components/Modal";
 
 function Home() {
@@ -15,7 +15,7 @@ function Home() {
       <div className="container employee-form">
         <Link to="employee-list">View Current Employees</Link>
         <h2>Create Employee</h2>
-        <EmployeeForm onSuccess={() => setModalState(true)} />
+        <Form onSuccess={() => setModalState(true)} />
       </div>
 
       <Modal isOpen={modalState} close={() => setModalState(false)}>
