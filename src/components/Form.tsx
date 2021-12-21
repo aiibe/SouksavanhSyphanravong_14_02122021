@@ -88,7 +88,7 @@ function Form({ onSuccess }: PropType) {
         <label htmlFor="city">City</label>
         <input id="city" type="text" {...register("cityLocation")} />
 
-        <label>State</label>
+        <label htmlFor="stateLocation">State</label>
         <Controller
           control={control}
           name="stateLocation"
@@ -108,7 +108,7 @@ function Form({ onSuccess }: PropType) {
         <input id="zipcode" type="number" {...register("zipCode")} />
       </fieldset>
 
-      <label>Department</label>
+      <label htmlFor="department">Department</label>
       <Controller
         control={control}
         name="department"
